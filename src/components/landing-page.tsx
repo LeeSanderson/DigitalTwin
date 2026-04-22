@@ -45,6 +45,12 @@ function Section({ id, eyebrow, title, description, className, children }: Secti
 export function LandingPage() {
   return (
     <div className="relative overflow-hidden">
+      <a
+        href="#main-content"
+        className="sr-only absolute left-4 top-4 z-50 rounded-full bg-cyan-300 px-4 py-2 text-sm font-semibold text-slate-950 focus:not-sr-only focus:outline-none focus:ring-4 focus:ring-cyan-200/70"
+      >
+        Skip to main content
+      </a>
       <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_top_left,rgba(34,211,238,0.2),transparent_28%),radial-gradient(circle_at_top_right,rgba(139,92,246,0.22),transparent_30%),linear-gradient(180deg,#030711_0%,#071321_40%,#030711_100%)]" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(148,163,184,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(148,163,184,0.06)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(circle_at_center,black,transparent_80%)]" />
 
@@ -66,7 +72,7 @@ export function LandingPage() {
                 <a
                   key={label}
                   href={href}
-                  className="rounded-full border border-white/10 px-4 py-2 transition hover:border-cyan-300/40 hover:bg-white/6"
+                  className="rounded-full border border-white/10 px-4 py-2 transition hover:border-cyan-300/50 hover:bg-white/8 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
                 >
                   {label}
                 </a>
@@ -75,7 +81,7 @@ export function LandingPage() {
           </div>
         </header>
 
-        <main className="space-y-8">
+        <main id="main-content" className="space-y-8">
           <motion.section
             className="relative overflow-hidden rounded-[2.25rem] border border-white/12 bg-slate-950/70 p-8 shadow-[0_40px_120px_rgba(3,7,18,0.55)] backdrop-blur md:p-12"
             initial="hidden"
@@ -105,7 +111,7 @@ export function LandingPage() {
                 <div className="flex flex-wrap gap-3">
                   <a
                     href="#contact"
-                    className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200"
+                    className="rounded-full bg-cyan-300 px-6 py-3 text-sm font-semibold text-slate-950 shadow-[0_12px_36px_rgba(34,211,238,0.2)] transition hover:bg-cyan-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-100"
                   >
                     Start a conversation
                   </a>
@@ -113,7 +119,7 @@ export function LandingPage() {
                     href={profile.contact.linkedin}
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/40 hover:bg-white/10"
+                    className="rounded-full border border-white/12 bg-slate-900/80 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/50 hover:bg-slate-800/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
                   >
                     View LinkedIn
                   </a>
@@ -121,7 +127,7 @@ export function LandingPage() {
                     href={profile.contact.github}
                     target="_blank"
                     rel="noreferrer"
-                    className="rounded-full border border-white/12 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/40 hover:bg-white/10"
+                    className="rounded-full border border-white/12 bg-slate-900/80 px-6 py-3 text-sm font-semibold text-white transition hover:border-cyan-300/50 hover:bg-slate-800/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
                   >
                     Explore GitHub
                   </a>
@@ -135,7 +141,7 @@ export function LandingPage() {
                     className="rounded-[1.75rem] border border-white/10 bg-white/6 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
                   >
                     <p className="text-4xl font-semibold tracking-tight text-white">{metric.value}</p>
-                    <p className="mt-2 text-sm uppercase tracking-[0.22em] text-slate-400">{metric.label}</p>
+                    <p className="mt-2 text-sm uppercase tracking-[0.22em] text-slate-300">{metric.label}</p>
                   </div>
                 ))}
               </div>
@@ -222,7 +228,7 @@ export function LandingPage() {
                     <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
                       <div>
                         <h3 className="text-xl font-semibold text-white">{item.role}</h3>
-                        <p className="text-sm uppercase tracking-[0.22em] text-slate-400">{item.company}</p>
+                    <p className="text-sm uppercase tracking-[0.22em] text-slate-300">{item.company}</p>
                       </div>
                       <p className="text-sm font-medium text-cyan-100">{item.period}</p>
                     </div>
@@ -274,7 +280,7 @@ export function LandingPage() {
                       <h3 className="mt-4 text-2xl font-semibold text-white">{item.title}</h3>
                       <p className="mt-4 text-base leading-7 text-slate-300">{item.description}</p>
                     </div>
-                    <p className="mt-8 text-sm text-slate-500">Reserved for future portfolio expansion</p>
+                    <p className="mt-8 text-sm text-slate-300">Reserved for future portfolio expansion</p>
                   </div>
                 ))}
               </div>
@@ -291,27 +297,27 @@ export function LandingPage() {
             <div className="grid gap-4 md:grid-cols-3">
               <a
                 href={`mailto:${profile.contact.email}`}
-                className="rounded-[1.75rem] border border-white/10 bg-slate-950/55 p-6 transition hover:border-cyan-300/40 hover:bg-slate-950/75"
+                className="rounded-[1.75rem] border border-white/10 bg-slate-950/55 p-6 transition hover:border-cyan-300/50 hover:bg-slate-950/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
               >
-                <p className="text-sm uppercase tracking-[0.26em] text-slate-500">Email</p>
+                <p className="text-sm uppercase tracking-[0.26em] text-slate-300">Email</p>
                 <p className="mt-3 text-lg font-semibold text-white">{profile.contact.email}</p>
               </a>
               <a
                 href={profile.contact.linkedin}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-[1.75rem] border border-white/10 bg-slate-950/55 p-6 transition hover:border-cyan-300/40 hover:bg-slate-950/75"
+                className="rounded-[1.75rem] border border-white/10 bg-slate-950/55 p-6 transition hover:border-cyan-300/50 hover:bg-slate-950/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
               >
-                <p className="text-sm uppercase tracking-[0.26em] text-slate-500">LinkedIn</p>
+                <p className="text-sm uppercase tracking-[0.26em] text-slate-300">LinkedIn</p>
                 <p className="mt-3 text-lg font-semibold text-white">Professional profile</p>
               </a>
               <a
                 href={profile.contact.github}
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-[1.75rem] border border-white/10 bg-slate-950/55 p-6 transition hover:border-cyan-300/40 hover:bg-slate-950/75"
+                className="rounded-[1.75rem] border border-white/10 bg-slate-950/55 p-6 transition hover:border-cyan-300/50 hover:bg-slate-950/75 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-200"
               >
-                <p className="text-sm uppercase tracking-[0.26em] text-slate-500">GitHub</p>
+                <p className="text-sm uppercase tracking-[0.26em] text-slate-300">GitHub</p>
                 <p className="mt-3 text-lg font-semibold text-white">Code and experiments</p>
               </a>
             </div>
