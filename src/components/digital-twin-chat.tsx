@@ -1,6 +1,8 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { starterQuestions } from "@/lib/digital-twin-context";
 
@@ -14,6 +16,68 @@ const initialMessage: Message = {
   content:
     "Hello, I'm Lee's Digital Twin. Ask me about his career journey, leadership experience, architecture work, technical background, or the kinds of engineering challenges he enjoys solving.",
 };
+
+function MarkdownMessage({ content }: { content: string }) {
+  return (
+    <div className="space-y-3 text-sm leading-7 text-slate-100">
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        components={{
+          p: ({ children }) => <p className="whitespace-pre-wrap">{children}</p>,
+          ul: ({ children }) => <ul className="ml-5 list-disc space-y-2">{children}</ul>,
+          ol: ({ children }) => <ol className="ml-5 list-decimal space-y-2">{children}</ol>,
+          li: ({ children }) => <li className="pl-1">{children}</li>,
+          h1: ({ children }) => <h1 className="text-lg font-semibold text-white">{children}</h1>,
+          h2: ({ children }) => <h2 className="text-base font-semibold text-white">{children}</h2>,
+          h3: ({ children }) => <h3 className="text-sm font-semibold uppercase tracking-[0.18em] text-cyan-100">{children}</h3>,
+          strong: ({ children }) => <strong className="font-semibold text-white">{children}</strong>,
+          em: ({ children }) => <em className="italic text-slate-100">{children}</em>,
+          blockquote: ({ children }) => (
+            <blockquote className="border-l-2 border-cyan-300/50 pl-4 text-slate-200">{children}</blockquote>
+          ),
+          a: ({ children, href }) => (
+            <a
+              href={href}
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-cyan-200 underline decoration-cyan-300/50 underline-offset-4 transition hover:text-cyan-100"
+            >
+              {children}
+            </a>
+          ),
+          code: ({ children, className }) => {
+            const isBlock = Boolean(className);
+
+            if (isBlock) {
+              return (
+                <code className="block overflow-x-auto rounded-xl border border-white/10 bg-slate-950/90 px-4 py-3 font-mono text-xs text-cyan-100">
+                  {children}
+                </code>
+              );
+            }
+
+            return (
+              <code className="rounded-md bg-slate-950/80 px-1.5 py-0.5 font-mono text-xs text-cyan-100">
+                {children}
+              </code>
+            );
+          },
+          pre: ({ children }) => <pre className="my-3 overflow-x-auto">{children}</pre>,
+          hr: () => <hr className="border-white/10" />,
+          table: ({ children }) => (
+            <div className="my-3 overflow-x-auto">
+              <table className="min-w-full border-collapse text-left text-sm">{children}</table>
+            </div>
+          ),
+          th: ({ children }) => <th className="border-b border-white/10 px-3 py-2 font-semibold text-white">{children}</th>,
+          td: ({ children }) => <td className="border-b border-white/10 px-3 py-2 align-top text-slate-200">{children}</td>,
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    </div>
+  );
+}
 
 export function DigitalTwinChat() {
   const [messages, setMessages] = useState<Message[]>([initialMessage]);
@@ -131,7 +195,11 @@ export function DigitalTwinChat() {
               <p className="mb-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-300">
                 {message.role === "assistant" ? "Digital Twin" : "You"}
               </p>
-              <p className="whitespace-pre-wrap">{message.content}</p>
+              {message.role === "assistant" ? (
+                <MarkdownMessage content={message.content} />
+              ) : (
+                <p className="whitespace-pre-wrap">{message.content}</p>
+              )}
             </div>
           ))}
 
