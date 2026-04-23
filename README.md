@@ -26,6 +26,14 @@ OPENROUTER_API_KEY=your-real-openrouter-api-key
 
 The `.env.example` file shows the required variable name, and `.env` is ignored by git so your secret key is not committed.
 
+## AI Digital Twin chat
+
+The site now includes an AI chat experience that answers questions about Lee's career using OpenRouter.
+
+- Model: `openai/gpt-oss-120b:free`
+- API route: `POST /api/chat`
+- Requirement: `OPENROUTER_API_KEY` must be set in `.env`
+
 ## Run locally
 
 ```bash

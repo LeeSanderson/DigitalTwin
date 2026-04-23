@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import clsx from "clsx";
 
+import { DigitalTwinChat } from "@/components/digital-twin-chat";
 import { profile } from "@/data/profile";
 
 const fadeInUp = {
@@ -66,6 +67,7 @@ export function LandingPage() {
                 ["About", "#about"],
                 ["Journey", "#journey"],
                 ["Expertise", "#expertise"],
+                ["AI Twin", "#digital-twin"],
                 ["Portfolio", "#portfolio"],
                 ["Contact", "#contact"],
               ].map(([label, href]) => (
@@ -208,6 +210,15 @@ export function LandingPage() {
           </div>
 
           <Section
+            id="digital-twin"
+            eyebrow="Digital Twin"
+            title="Chat with an AI version of Lee's professional profile"
+            description="Ask direct questions about career progression, leadership experience, technical depth, architecture work, and preferred problem spaces."
+          >
+            <DigitalTwinChat />
+          </Section>
+
+          <Section
             id="journey"
             eyebrow="Career Journey"
             title="A timeline from engineer to CTO to principal craftsperson"
@@ -228,7 +239,7 @@ export function LandingPage() {
                     <div className="flex flex-col gap-2 md:flex-row md:items-baseline md:justify-between">
                       <div>
                         <h3 className="text-xl font-semibold text-white">{item.role}</h3>
-                    <p className="text-sm uppercase tracking-[0.22em] text-slate-300">{item.company}</p>
+                        <p className="text-sm uppercase tracking-[0.22em] text-slate-300">{item.company}</p>
                       </div>
                       <p className="text-sm font-medium text-cyan-100">{item.period}</p>
                     </div>
